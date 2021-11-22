@@ -40,8 +40,15 @@ class DocumentController extends Controller
     {
         $validated = $request->validated();
 
-        $validated['path'] = $request->file('document')->store('documents');
-        $validated['body'] = '';
+        $document = $request->file('document');
+
+        $validated['path'] = $document->store('documents');
+
+        $class = config('filereader.' . $document->getMimeType());
+
+        $reader = new $class;
+
+        $validated['body'] = $reader->getContents($document);
 
 
         $request->user()->documents()->create($validated);
