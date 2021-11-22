@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\DocumentSearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,6 +14,8 @@ Route::middleware('auth')->group(function() {
         return view('dashboard');
     })->name('dashboard');
     
+    Route::post('documents/search', DocumentSearchController::class)->name('documents.search');
+
     Route::resource('documents', DocumentController::class);
 });
 
