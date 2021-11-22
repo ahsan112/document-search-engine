@@ -57,14 +57,17 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                     </svg>
                                             </a>
-                                            <a 
-                                                href="{{ route('documents.create') }}"
-                                                class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-500 border border-transparent rounded-md hover:bg-red-700 active:bg-green-900 focus:outline-none focus:border-red-900 focus:ring ring-red-300 disabled:opacity-25"> 
-                                                delete 
+
+                                            <form class="inline-flex" method="POST" action="{{ route('documents.destroy', $document) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <x-button class="bg-red-500 border border-transparent rounded-md hover:bg-red-700 active:bg-green-900 focus:outline-none focus:border-red-900"
+                                                >Delete
                                                     <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>
-                                            </a>
+                                                </x-button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
