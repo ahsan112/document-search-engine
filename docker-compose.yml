@@ -66,6 +66,15 @@ services:
     entrypoint: ['/var/www/html/artisan']
     networks:
       - lara-search 
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    # platform: linux/x86_64
+    ports:
+        - 7700:7700
+    volumes:
+        - ./meilisearch/data:/data.ms
+    networks:
+        - lara-search
 
 networks:
   lara-search:
